@@ -20,7 +20,9 @@ export function Form<T extends z.ZodType>({ config }: FormProps<T>) {
   } = config;
 
   const initialFormValues = fields.reduce((acc, field) => {
-    acc[field.name] = (initialValues as Record<string, any>)[field.name] ?? "";
+    const value = (initialValues as Record<string, any>)[field.name];
+    // Для опциональных полей используем undefined вместо пустой строки
+    acc[field.name] = value !== undefined ? value : (field.required ? "" : undefined);
     return acc;
   }, {} as Record<string, any>);
 
@@ -43,11 +45,11 @@ export function Form<T extends z.ZodType>({ config }: FormProps<T>) {
               <FormField key={field.name} fieldConfig={field} />
             ))}
             <Button
+              type="submit"
               variant="contained"
               fullWidth
               loading={formikProps.isSubmitting}
               disabled={formikProps.isSubmitting}
-              onClick={formikProps.submitForm}
             >
               {submitButtonText}
             </Button>

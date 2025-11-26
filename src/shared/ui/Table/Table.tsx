@@ -32,6 +32,7 @@ export function Table<TData>({
   manualPagination = false,
   manualSorting = false,
   pageCount,
+  tableActions,
 }: TableProps<TData>) {
   const table = useReactTable({
     data,
@@ -72,6 +73,11 @@ export function Table<TData>({
 
   return (
     <Paper>
+      {tableActions && (
+        <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {tableActions}
+        </Box>
+      )}
       <TableContainer>
         <MuiTable>
           <TableHead>

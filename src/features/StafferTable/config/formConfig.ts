@@ -7,22 +7,25 @@ export const STATUSES = [
   { value: 'Уволен', label: 'Уволен' },
 ];
 
+const requiredString = (message: string = 'Обязательное поле') =>
+  z.preprocess((val) => val ?? '', z.string().min(1, message));
+
 export const stafferValidationSchema = z.object({
-  first_name: z.string().min(1, 'Обязательное поле'),
-  last_name: z.string().min(1, 'Обязательное поле'),
-  middle_name: z.string().optional(),
-  position: z.string().min(1, 'Обязательное поле'),
-  status: z.string().min(1, 'Обязательное поле'),
-  tg_url: z.string().optional(),
+  first_name: requiredString('Обязательное поле'),
+  last_name: requiredString('Обязательное поле'),
+  middle_name: z.string().optional().or(z.literal('')),
+  position: requiredString('Обязательное поле'),
+  status: requiredString('Обязательное поле'),
+  tg_url: z.string().optional().or(z.literal('')),
 });
 
 export interface StafferFormValues {
   first_name: string;
   last_name: string;
-  middle_name: string;
+  middle_name?: string;
   position: string;
   status: string;
-  tg_url: string;
+  tg_url?: string;
 }
 
 export const createStafferFields = (

@@ -16,7 +16,6 @@ export const StafferForm = ({ staffer }: StafferFormProps) => {
     positionsLoading,
     handleCreate,
     handleEdit,
-    isSubmitting,
   } = useStafferForm({ staffer });
 
   if (positionsLoading) {
@@ -31,12 +30,13 @@ export const StafferForm = ({ staffer }: StafferFormProps) => {
 
   return (
     <Form
-      initialValues={initialValues}
-      validationSchema={stafferValidationSchema}
-      onSubmit={staffer ? handleEdit : handleCreate}
-      fields={fields}
-      submitLabel={staffer ? 'Сохранить' : 'Создать'}
-      isSubmitting={isSubmitting}
+      config={{
+        fields,
+        validationSchema: stafferValidationSchema,
+        onSubmit: staffer ? handleEdit : handleCreate,
+        submitButtonText: staffer ? 'Сохранить' : 'Создать',
+        initialValues,
+      }}
     />
   );
 };

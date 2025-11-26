@@ -1,16 +1,18 @@
 import type { InputProps } from '../Input';
+import type { DropdownOption } from '../Dropdown';
 import { z } from 'zod';
 
 export interface FormFieldConfig {
   name: string;
   label: string;
-  type?: 'text' | 'email' | 'password' | 'number';
+  type?: 'text' | 'email' | 'password' | 'number' | 'select';
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
   autoComplete?: string;
   inputProps?: Partial<InputProps>;
+  options?: DropdownOption[];
 }
 
 export interface ApiError {
