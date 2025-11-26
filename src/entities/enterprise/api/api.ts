@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { enterpriseApi, type Enterprise, type SetEnterpriseStaffer } from "@shared/api";
+import { enterpriseApi } from "@shared/api";
 
 export const useEnterprises = () => {
   return useQuery({

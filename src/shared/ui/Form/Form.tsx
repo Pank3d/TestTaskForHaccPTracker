@@ -21,7 +21,6 @@ export function Form<T extends z.ZodType>({ config }: FormProps<T>) {
 
   const initialFormValues = fields.reduce((acc, field) => {
     const value = (initialValues as Record<string, any>)[field.name];
-    // Для опциональных полей используем undefined вместо пустой строки
     acc[field.name] = value !== undefined ? value : (field.required ? "" : undefined);
     return acc;
   }, {} as Record<string, any>);

@@ -1,5 +1,5 @@
-import { Button, Typography, Stack } from '@mui/material';
-import { useModalStore } from './modalStore';
+import { Button, Typography, Stack } from "@mui/material";
+import { useModalStore } from "./modalStore";
 
 interface ConfirmModalOptions {
   title: string;
@@ -18,8 +18,8 @@ export const useConfirmModal = () => {
     hint,
     onSubmit,
     onCancel,
-    submitText = 'Подтвердить',
-    cancelText = 'Отмена',
+    submitText = "Подтвердить",
+    cancelText = "Отмена",
   }: ConfirmModalOptions) => {
     const handleSubmit = async () => {
       await onSubmit();
@@ -37,7 +37,7 @@ export const useConfirmModal = () => {
         <Stack spacing={2}>
           <Typography>{hint}</Typography>
         </Stack>
-      ) : null,
+      ) : '',
       actions: (
         <>
           <Button onClick={handleCancel} color="inherit">
@@ -48,7 +48,7 @@ export const useConfirmModal = () => {
           </Button>
         </>
       ),
-      maxWidth: 'xs',
+      maxWidth: "xs",
     });
   };
 

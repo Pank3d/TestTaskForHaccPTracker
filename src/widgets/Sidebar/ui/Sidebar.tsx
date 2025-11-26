@@ -1,9 +1,10 @@
-import { Box, Typography, Paper, Stack } from '@mui/material';
+import { Box, Typography, Paper, Stack, Button } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Dropdown } from '@shared/ui';
 import { useSidebar } from '../model/useSidebar';
 
 export const Sidebar = () => {
-  const { user, enterpriseOptions, selectedEnterpriseId, handleEnterpriseChange } = useSidebar();
+  const { user, enterpriseOptions, selectedEnterpriseId, handleEnterpriseChange, handleLogout } = useSidebar();
 
   return (
     <Paper
@@ -46,6 +47,18 @@ export const Sidebar = () => {
           <Typography variant="body2" color="primary" sx={{ cursor: 'pointer' }}>
             (активный пункт меню)
           </Typography>
+        </Box>
+
+        <Box sx={{ mt: 'auto !important', pt: 2 }}>
+          <Button
+            variant="outlined"
+            color="error"
+            fullWidth
+            startIcon={<LogoutIcon />}
+            onClick={handleLogout}
+          >
+            Выйти
+          </Button>
         </Box>
       </Stack>
     </Paper>

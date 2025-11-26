@@ -4,7 +4,7 @@ import { Sidebar } from "@widgets/Sidebar";
 import { StafferTable } from "@features/StafferTable";
 
 export const HomePage = () => {
-  const { data: user, isLoading: userLoading, error: userError } = useCurrentUser();
+  const { isLoading: userLoading, error: userError } = useCurrentUser();
   const { data: staffers = [], isLoading: staffersLoading } = useStaffers();
 
   if (userLoading) {
